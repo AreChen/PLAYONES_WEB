@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>My first three.js app</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+<script src="Js/three.js"></script>
+<script>
+    var Myscene = new THREE.Scene();
+    var Mycamera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    var Mygeo = new THREE.BoxGeometry( 1, 1, 1);
+    var Mat = new THREE.MeshBasicMaterial( { color: 0x999999 } );
+    var Mycube = new THREE.Mesh( Mygeo, Mat );
+
+    Myscene.add( Mycube );
+    Mycamera.position.z = 15;
+    // Our Javascript will go here.
+    function animate() {
+        requestAnimationFrame( animate );
+        Mycube.rotation.x += 0.01;
+        Mycube.rotation.y += 0.01;
+        renderer.render( Myscene, Mycamera );
+    };
+    animate();
+</script>
+</body>
+</html>
